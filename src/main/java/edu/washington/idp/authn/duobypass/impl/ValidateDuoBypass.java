@@ -18,6 +18,7 @@
 package edu.washington.idp.authn.duobypass.impl;
 
 import java.util.ArrayList;
+import java.util.function.Function;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
@@ -51,7 +52,7 @@ import org.opensaml.profile.context.ProfileRequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.google.common.base.Function;
+// import com.google.common.base.Function;
 
 /**
  * An action that validates a DuoBypass response token and produces an

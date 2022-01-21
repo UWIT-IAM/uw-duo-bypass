@@ -4,9 +4,9 @@
 
     <modelVersion>4.0.0</modelVersion>
     <name>Shibboleth IdP :: 2fa bypass authn</name>
-    <artifactId>2fa-bypass</artifactId>
+    <artifactId>uw-duo-bypass</artifactId>
     <groupId>edu.washington.iam</groupId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <packaging>jar</packaging>
 
     <repositories>
@@ -28,6 +28,12 @@
 
     <dependencies>
 
+<dependency>
+    <groupId>javax.json</groupId>
+    <artifactId>javax.json-api</artifactId>
+    <version>1.0</version>
+    <scope>provided</scope>
+</dependency>
 
 <dependency>
     <groupId>javax.servlet</groupId>
@@ -40,25 +46,29 @@
         <dependency>
             <groupId>net.shibboleth.idp</groupId>
             <artifactId>idp-authn-api</artifactId>
-            <version>3.4.4</version>
+            <!-- <version>3.4.4</version> -->
+            <version>4.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>net.shibboleth.idp</groupId>
             <artifactId>idp-session-api</artifactId>
-            <version>3.4.4</version>
+            <!-- <version>3.4.4</version> -->
+            <version>4.0.1</version>
         </dependency>
 
         <dependency>
             <groupId>net.shibboleth.utilities</groupId>
             <artifactId>java-support</artifactId>
-            <version>7.5.0</version>
+            <!-- <version>7.5.0</version> -->
+            <version>8.1.0</version>
         </dependency>
 
         <dependency>
             <groupId>commons-logging</groupId>
             <artifactId>commons-logging</artifactId>
-            <version>1.1.1</version>
+            <!-- <version>1.1.1</version> -->
+            <version>1.2</version>
         </dependency>
 
         <!-- Runtime Dependencies -->
