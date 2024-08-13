@@ -33,7 +33,7 @@ public class DuoBypassPrincipal implements CloneablePrincipal {
     @Nonnull @NotEmpty private String username;
 
     public DuoBypassPrincipal(@Nonnull @NotEmpty @ParameterName(name="name") final String name) {
-        username = Constraint.isNotNull(StringSupport.trimOrNull(name), "Username cannot be null or empty");
+        username = Constraint.isNotEmpty(name, "Username cannot be null or empty");
     }
 
     @Override

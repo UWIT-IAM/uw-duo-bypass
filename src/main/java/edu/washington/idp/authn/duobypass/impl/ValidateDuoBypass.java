@@ -22,10 +22,10 @@ import java.util.function.Function;
 import org.apache.http.NameValuePair;
 import org.apache.http.message.BasicNameValuePair;
 
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import jakarta.annotation.Nonnull;
+import jakarta.annotation.Nullable;
 import javax.security.auth.Subject;
-import javax.servlet.ServletRequest;
+import jakarta.servlet.ServletRequest;
 
 import java.io.IOException;
 import java.security.InvalidKeyException;
@@ -40,7 +40,6 @@ import net.shibboleth.idp.authn.context.SubjectCanonicalizationContext;
 import edu.washington.idp.authn.duobypass.DuoBypassPrincipal;
 import net.shibboleth.idp.session.context.navigate.CanonicalUsernameLookupStrategy;
 import net.shibboleth.utilities.java.support.annotation.constraint.NotEmpty;
-import net.shibboleth.utilities.java.support.component.ComponentSupport;
 import net.shibboleth.utilities.java.support.logic.Constraint;
 import net.shibboleth.utilities.java.support.logic.FunctionSupport;
 
@@ -91,7 +90,7 @@ public class ValidateDuoBypass extends AbstractValidationAction {
      * @param strategy lookup strategy
      */
     public void setUsernameLookupStrategy(@Nonnull final Function<ProfileRequestContext,String> strategy) {
-        ComponentSupport.ifInitializedThrowUnmodifiabledComponentException(this);
+        this.ifInitializedThrowUnmodifiabledComponentException();
 
         usernameLookupStrategy = Constraint.isNotNull(strategy, "Username lookup strategy cannot be null");
     }
@@ -116,7 +115,7 @@ public class ValidateDuoBypass extends AbstractValidationAction {
         if (servletRequest == null) {
             log.error("{} No ServletRequest available", getLogPrefix());
             ActionSupport.buildEvent(profileRequestContext, EventIds.INVALID_PROFILE_CTX);
-            recordFailure();
+            recordFailure(profileRequestContext);
             return false;
         }
 
@@ -130,7 +129,7 @@ public class ValidateDuoBypass extends AbstractValidationAction {
 
 
         log.info("DuoBypass authentication succeeded for '{}'", username);
-        recordSuccess();
+        recordSuccess(profileRequestContext);
         buildAuthenticationResult(profileRequestContext, authenticationContext);
 
     }
